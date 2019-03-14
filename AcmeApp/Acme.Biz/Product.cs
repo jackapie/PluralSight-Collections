@@ -16,9 +16,24 @@ namespace Acme.Biz
         #region Constructors
         public Product()
         {
-            var colorOptions = new List<string>(){"Red", "Espresso", "White", "Navy"};
-            
+            #region Generic List
+
+            var colorOptions = new List<string>() { "Red", "Espresso", "White", "Navy" };
+
             Console.WriteLine(colorOptions);
+            #endregion
+            //var states = new Dictionary<string, string>();
+            //states.Add("CA", "California");
+            //states.Add("WA", "Washington");
+            //states.Add("NY", "New York");
+            var states = new Dictionary<string, string>()
+            {
+                {"CA", "California"},
+                {"WA", "Washington"},
+                {"NY", "New York"},
+            };
+
+            Console.WriteLine(states);
         }
         public Product(int productId,
                         string productName,
@@ -42,7 +57,8 @@ namespace Acme.Biz
         private string productName;
         public string ProductName
         {
-            get {
+            get
+            {
                 var formattedValue = productName?.Trim();
                 return formattedValue;
             }
@@ -68,7 +84,8 @@ namespace Acme.Biz
         private Vendor productVendor;
         public Vendor ProductVendor
         {
-            get {
+            get
+            {
                 if (productVendor == null)
                 {
                     productVendor = new Vendor();
@@ -90,10 +107,11 @@ namespace Acme.Biz
         public OperationResult<decimal> CalculateSuggestedPrice(decimal markupPercent)
         {
             var message = "";
-            if(markupPercent <= 0m)
+            if (markupPercent <= 0m)
             {
                 message = "Invalid markup percentage";
-            }else if(markupPercent < 10)
+            }
+            else if (markupPercent < 10)
             {
                 message = "Below recommended markup percentage";
             }
@@ -104,7 +122,7 @@ namespace Acme.Biz
 
             return operationResult;
         }
-             
+
 
         public override string ToString()
         {
