@@ -30,31 +30,13 @@ namespace Acme.Biz
             return vendor;
         }
 
-        /// <summary>
-        /// Retrieves all of the approved vendors
-        /// </summary>
-        /// <returns></returns>
-        public Vendor[] RetrieveArray()
-        {
-            var vendors = new Vendor[2]
-            {
-                new Vendor()
-                {
-                    VendorId=5, CompanyName= "ABC Corp", Email = "abc@abc.com"
-                },
-                new Vendor()
-                {
-                     VendorId = 8, CompanyName = "XYZ Inc", Email = "xyz@xyz.com"
-                }
-            };
-            return vendors;
-        }
+       
 
         /// <summary>
         /// Retrieves all of the approved vendors
         /// </summary>
         /// <returns></returns>
-        public List<Vendor> Retrieve()
+        public ICollection<Vendor> Retrieve()
         {
             if (vendors == null)
             {
@@ -76,54 +58,7 @@ namespace Acme.Biz
             return vendors;
         }
 
-        /// <summary>
-        /// Retrieves all of the approved vendors
-        /// </summary>
-        /// <returns></returns>
-        public Dictionary<string, Vendor> RetrieveWithKeys()
-        {
-            var vendors = new Dictionary<string, Vendor>()
-            {
-                {"ABC Corp", new Vendor()
-                {
-                    VendorId=5, CompanyName= "ABC Corp", Email = "abc@abc.com"
-                } },
-                {"XYZ Inc", new Vendor()
-                {
-                    VendorId = 8, CompanyName = "XYZ Inc", Email = "xyz@xyz.com"
-                } }
-            };
-
-            foreach (var element in vendors)
-            {
-                var key = element.Key;
-                var vendor = element.Value;
-                Console.WriteLine($"Key: {key} value: {vendor}");
-            }
-            //foreach (var vendor in vendors.Values)
-            //{
-            //    Console.WriteLine(vendor);
-            //}
-            //foreach (var companyName in vendors.Keys)
-            //{
-            //    Console.WriteLine(vendors[companyName]);
-            //}
-
-            //if (vendors.ContainsKey("XYZ"))
-            //{
-            //    Console.WriteLine(vendors["XYZ"]);
-            //}
-
-            //Vendor vendor;
-            //if(vendors.TryGetValue("XYZ", out vendor))
-            //{
-            //    Console.WriteLine(vendor);
-            //}
-
-
-            return vendors;
-        }
-
+       
         public T RetrieveValue<T>(string sql, T defaultValue)
         {
             //Call the database to retrieve the value
