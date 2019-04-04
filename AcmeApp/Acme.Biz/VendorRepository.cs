@@ -30,7 +30,7 @@ namespace Acme.Biz
             return vendor;
         }
 
-       
+
 
         /// <summary>
         /// Retrieves all of the approved vendors
@@ -54,7 +54,36 @@ namespace Acme.Biz
             {
                 //Console.WriteLine(vendor);
             }
-            
+
+            return vendors;
+        }
+
+        /// Retrieves all of the approved vendors
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Vendor> RetrieveAll()
+        {
+            vendors = new List<Vendor>()
+            {
+                new Vendor()
+                { VendorId = 1, CompanyName = "ABC Corp", Email = "abc@abc.com" },
+                new Vendor()
+                { VendorId = 2, CompanyName = "XYZ Inc",  Email = "xyz@xyz.com"},
+                new Vendor()
+                { VendorId = 12, CompanyName = "EFG Ltd", Email = "efg@efg.com" },
+                new Vendor()
+                { VendorId = 17, CompanyName = "HIJ AG",Email = "hij@hij.com"},
+                new Vendor()
+                { VendorId = 22, CompanyName = "Amalgamated Toys", Email = "a@abc.com" },
+                new Vendor()
+                { VendorId = 28, CompanyName = "Toy Blocks Inc", Email = "blocks@abc.com"},
+                new Vendor()
+                { VendorId = 31, CompanyName = "Home Products Inc", Email = "home@abc.com" },
+                new Vendor()
+                { VendorId = 35, CompanyName = "Car Toys",Email = "car@abc.com"},
+                new Vendor()
+                { VendorId = 42, CompanyName = "Toys For Fun", Email = "fun@abc.com" }
+            };
             return vendors;
         }
 
@@ -67,13 +96,13 @@ namespace Acme.Biz
             //Get the data from the database
             this.Retrieve();
 
-            foreach(var vendor in vendors)
+            foreach (var vendor in vendors)
             {
                 Console.WriteLine($"Vendor Id is {vendor.VendorId}");
                 yield return vendor;
             }
         }
-       
+
         public T RetrieveValue<T>(string sql, T defaultValue)
         {
             //Call the database to retrieve the value
