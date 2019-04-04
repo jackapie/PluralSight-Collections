@@ -96,20 +96,29 @@ namespace Acme.Biz.Tests
                new Vendor()
                 { VendorId = 35, CompanyName = "Car Toys",Email = "car@abc.com"},
                 new Vendor()
-                { VendorId = 28, CompanyName = "Toy Blocks Inc", Email = "blocks@abc.com"},             
+                { VendorId = 28, CompanyName = "Toy Blocks Inc", Email = "blocks@abc.com"},
                 new Vendor()
                 { VendorId = 42, CompanyName = "Toys For Fun", Email = "fun@abc.com" }
-            };                
+            };
 
             //Act
             var vendors = repository.RetrieveAll();
-            var vendorQuery = from v in vendors
-                              where v.CompanyName.Contains("Toy")
-                              orderby v.CompanyName
-                              select v;
+            //var vendorQuery = from v in vendors
+            //                  where v.CompanyName.Contains("Toy")
+            //                  orderby v.CompanyName
+            //                  select v;
+            var vendorQuery = vendors.Where(FilterCompanies)
+                .OrderBy(OrderCompaniesByName);
 
             //Assert
             CollectionAssert.AreEqual(expected, vendorQuery.ToList());
         }
+
+        private bool FilterCompanies(Vendor v) =>
+            v.CompanyName.Contains("Toy");
+
+        private string OrderCompaniesByName(Vendor v) =>
+            v.CompanyName;
+
     }
 }
